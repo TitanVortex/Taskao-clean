@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "528026933274",
+    "firebase_url": "https://taskao-firebase.firebaseio.com",
+    "project_id": "taskao-firebase",
+    "storage_bucket": "taskao-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528026933274:android:702ea4042e3811ef",
+        "android_client_info": {
+          "package_name": "cegeka.scoaladevalori.ro.taskao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528026933274-f1d6go0hp4elh30ma20g3isvq956qq69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cegeka.scoaladevalori.ro.taskao",
+            "certificate_hash": "1ad084409c7b2887cd40d0bb59d42019a8b64c5c"
+          }
+        },
+        {
+          "client_id": "528026933274-5r08m34blvkc2oumnuq3n8hsa4eeu4i5.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "528026933274-5r08m34blvkc2oumnuq3n8hsa4eeu4i5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB05SSOPD9CTMlHGplWOQKtE-iWYQzXgzE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528026933274-5r08m34blvkc2oumnuq3n8hsa4eeu4i5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
