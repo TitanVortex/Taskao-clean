@@ -12,9 +12,14 @@
     tools:context=".ListViewActivity"
     tools:showIn="@layout/activity_list_view">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_down">
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

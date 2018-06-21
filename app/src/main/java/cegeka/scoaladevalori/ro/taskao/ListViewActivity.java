@@ -3,6 +3,7 @@ package cegeka.scoaladevalori.ro.taskao;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class ListViewActivity extends AppCompatActivity {
-
+    int k=0;
     private FirebaseAuth firebaseAuth;
     DatabaseReference db;
     FirebaseHelper helper;
@@ -28,6 +30,7 @@ public class ListViewActivity extends AppCompatActivity {
     ListView lv;
     EditText titleList,dateList,descList;
     String title, desc, date;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -35,6 +38,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_down);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -44,10 +48,8 @@ public class ListViewActivity extends AppCompatActivity {
         db= FirebaseDatabase.getInstance().getReference();
         helper=new FirebaseHelper(db);
 
-
-        //ADAPTER
         adapter=new CustomAdapter(ListViewActivity.this, helper.getUserActivities());
-        lv.setAdapter(adapter);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +57,18 @@ public class ListViewActivity extends AppCompatActivity {
                 displayInputDialog();
             }
         });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
 
     }
 
     private void displayInputDialog()
     {
-        Dialog d=new Dialog(this);
+        final Dialog d=new Dialog(ListViewActivity.this);
         d.setTitle("Save To Firebase");
         d.setContentView(R.layout.activity_add);
 
@@ -68,6 +76,7 @@ public class ListViewActivity extends AppCompatActivity {
         dateList= (EditText) d.findViewById(R.id.etDueDate);
         descList= (EditText) d.findViewById(R.id.etDescriptionActivity);
         Button saveBtn= (Button) d.findViewById(R.id.btnAddActivityMain);
+
 
         //SAVE
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,18 +106,27 @@ public class ListViewActivity extends AppCompatActivity {
                         dateList.setText("");
                         descList.setText("");
 
-
-                        adapter=null;
-                        lv.setAdapter(adapter);
-
+                        k=0;
 
                     }
                 }
 
             }
         });
-
         d.show();
+
+    }
+
+    public void refresh()
+    {
+        if(k==0){
+        lv.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
+        k++;
+        }else{
+            Toast.makeText(ListViewActivity.this,"Add activity to refresh!",Toast.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     public void Logout(){

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
                 assert userProfile != null;
-                profileName.setText("Welcome to TASKAO WORLD, "+userProfile.getUserName() +"!");
+                profileName.setText("Welcome to TASKAO WORLD, "+userProfile.getUserName() +" !");
                 profileEmail.setText("User: "+userProfile.getUserEmail());
             }
 
