@@ -28,7 +28,7 @@ public class FirebaseHelper {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
     String mUserId, mActivityId;
-    CustomAdapter adapter;
+    ListViewActivity.CustomAdapter adapter;
 
 
     String saved=null;
