@@ -57,11 +57,11 @@
                 android:textSize="24dp" />
 
             <Button
-                android:id="@+id/deleteActivity"
+                android:id="@+id/btnDelete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFC107"
-                android:text="Button"
+                android:text="Delete Activity"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 

@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/etTitleShow"
+            android:id="@+id/tvTitleShow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:id="@+id/etDateShow"
+            android:id="@+id/tvDateShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  date"
@@ -36,7 +36,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/etDescriptionShow"
+            android:id="@+id/tvDescriptionShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

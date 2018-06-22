@@ -1,10 +1,12 @@
 package cegeka.scoaladevalori.ro.taskao;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,10 +27,11 @@ public class FirebaseHelper {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
-    String mUserId;
+    String mUserId, mActivityId;
+    CustomAdapter adapter;
 
 
-    Boolean saved=null;
+    String saved=null;
     static ArrayList <UserActivities>  userActivities=new ArrayList<>();
 
 
@@ -43,39 +46,37 @@ public class FirebaseHelper {
     }
 
     //WRITE IF NOT NULL
-    public Boolean save(UserActivities activity)
+    public String save(UserActivities activity)
     {
         if(activity==null)
         {
-            saved=false;
+            saved=null;
         }else
         {
+            mActivityId=db.child(mUserId).child("tasks").push().getKey();
+            activity.userActivityId = mActivityId;
+            db.child(mUserId).child("tasks").child(mActivityId).setValue(activity);
             try
             {
-                db.child(mUserId).child("tasks").push().setValue(activity);
-                saved=true;
+
+                saved=mActivityId;
 
             }catch (DatabaseException e)
             {
                 e.printStackTrace();
-                saved=false;
+                saved=null;
             }
         }
 
         return saved;
     }
-    //IMPLEMENT FETCH DATA AND FILL ARRAYLIST
 
-    private void fetchData(DataSnapshot dataSnapshot)
-    {
-        userActivities.clear();
+    public void remove(String id_tasks) {
+        db.child(mUserId).child("tasks").child(id_tasks).removeValue();
+    }
 
-        for (DataSnapshot ds : dataSnapshot.getChildren())
-        {
-            UserActivities activity=ds.getValue(UserActivities.class);
-            userActivities.add(activity);
-
-        }
+    public String getmActivityId(String mActivityId) {
+        return this.mActivityId;
     }
 
     public ArrayList<UserActivities> getUserActivities() {
@@ -85,6 +86,7 @@ public class FirebaseHelper {
              public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                  UserActivities x = dataSnapshot.getValue(UserActivities.class);
                  userActivities.add(x);
+                 //adapter.notifyDataSetChanged();
              }
 
              @Override
@@ -94,7 +96,7 @@ public class FirebaseHelper {
 
              @Override
              public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                 //adapter.notifyDataSetChanged();
              }
 
              @Override
@@ -110,39 +112,5 @@ public class FirebaseHelper {
          return userActivities;
     }
 
-    //READ BY HOOKING ONTO DATABASE OPERATION CALLBACKS
-    public ArrayList<UserActivities> retrieve() {
-        db.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //fetchData(dataSnapshot);
 
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                //fetchData(dataSnapshot);
-
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        return userActivities;
-    }
 }

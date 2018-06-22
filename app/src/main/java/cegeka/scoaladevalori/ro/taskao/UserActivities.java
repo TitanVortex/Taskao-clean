@@ -5,6 +5,7 @@ public class UserActivities {
      String userActivityTitile;
      String userActivityDescription;
      String userActivityDate;
+     String userActivityId;
 
     public UserActivities(){
     }
@@ -13,6 +14,7 @@ public class UserActivities {
         this.userActivityTitile = userActivityTitile;
         this.userActivityDescription = userActivityDescription;
         this.userActivityDate = userActivityDate;
+
     }
 
     public String getUserActivityTitile() {
@@ -27,7 +29,7 @@ public class UserActivities {
         return userActivityDescription;
     }
 
-    public void setuserActivityDescription(String userName) {
+    public void setUserActivityDescription(String userName) {
         this.userActivityDescription = userName;
     }
 
@@ -37,6 +39,14 @@ public class UserActivities {
 
     public void setUserActivityDate(String userActivityDate) {
         this.userActivityDate = userActivityDate;
+    }
+
+    public String getUserActivityId() {
+        return userActivityId;
+    }
+
+    public void setUserActivityId(String userActivityId) {
+        this.userActivityId = userActivityId;
     }
 
 }

@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter {
     Context c;
+    DatabaseReference db;
+    int s;
     ArrayList<UserActivities> userActivities;
 
 
@@ -41,9 +45,9 @@ public class CustomAdapter extends BaseAdapter {
             convertView= LayoutInflater.from(c).inflate(R.layout.single_item,viewGroup,false);
         }
 
-        TextView titleShow= (TextView) convertView.findViewById(R.id.etTitleShow);
-        TextView dateShow= (TextView) convertView.findViewById(R.id.etDateShow);
-        TextView descShow= (TextView) convertView.findViewById(R.id.etDescriptionShow);
+        TextView titleShow= (TextView) convertView.findViewById(R.id.tvTitleShow);
+        TextView dateShow= (TextView) convertView.findViewById(R.id.tvDateShow);
+        TextView descShow= (TextView) convertView.findViewById(R.id.tvDescriptionShow);
 
         final UserActivities s= (UserActivities) this.getItem(position);
 
@@ -51,11 +55,14 @@ public class CustomAdapter extends BaseAdapter {
         dateShow.setText(s.getUserActivityDate());
         descShow.setText(s.getUserActivityDescription());
 
+
+        final View finalConvertView = convertView;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //OPEN DETAIL
-                openDetailActivity(s.getUserActivityTitile(),s.getUserActivityDate(),s.getUserActivityDescription());
+                openDetailActivity(s.getUserActivityTitile(),s.getUserActivityDate(),s.getUserActivityDescription(),s.getUserActivityId());
+
             }
         });
 
@@ -68,8 +75,10 @@ public class CustomAdapter extends BaseAdapter {
         i.putExtra("NAME_KEY",details[0]);
         i.putExtra("DATE_KEY",details[1]);
         i.putExtra("DESC_KEY",details[2]);
+        i.putExtra("DELETE_KEY",details[3]);
 
 
         c.startActivity(i);
+
     }
 }
