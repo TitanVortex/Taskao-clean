@@ -42,12 +42,6 @@ public class ListViewActivity extends AppCompatActivity {
     String title, desc, date, id;
     SwipeRefreshLayout swipeRefreshLayout;
     Date dateV;
-    //private FirebaseDatabase firebaseDatabase;
-    //private FirebaseUser firebaseUser;
-    //String mUserId;
-    //static String mActId;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +50,10 @@ public class ListViewActivity extends AppCompatActivity {
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_down);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        //firebaseUser = firebaseAuth.getCurrentUser();
-        //firebaseDatabase = FirebaseDatabase.getInstance();
-        //mUserId = firebaseUser.getUid();
+
 
         lv = (ListView) findViewById(R.id.listView);
 
-        //INITIALIZE FIREBASE DB
         db= FirebaseDatabase.getInstance().getReference();
         helper=new FirebaseHelper(db);
 
@@ -133,7 +124,6 @@ public class ListViewActivity extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //OPEN DETAIL
                     openDetailActivity(s.getUserActivityTitile(),s.getUserActivityDate(),s.getUserActivityDescription(),s.getUserActivityId());
 
                 }
@@ -142,7 +132,6 @@ public class ListViewActivity extends AppCompatActivity {
             return convertView;
         }
 
-        //OPEN DETAIL ACTIVITY
         private void openDetailActivity(String...details)
         {
 
@@ -168,13 +157,10 @@ public class ListViewActivity extends AppCompatActivity {
         descList= (EditText) d.findViewById(R.id.etDescriptionActivity);
         Button saveBtn= (Button) d.findViewById(R.id.btnAddActivityMain);
 
-
-        //SAVE
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //GET DATA
                 title=titleList.getText().toString();
                 date=dateList.getText().toString();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -185,28 +171,19 @@ public class ListViewActivity extends AppCompatActivity {
                 }
                 desc=descList.getText().toString();
 
-
-
-                //SET DATA
                 UserActivities s=new UserActivities();
                 s.setUserActivityTitile(title);
                 s.setUserActivityDate(date);
                 s.setUserActivityDescription(desc);
 
-
-
-
-                //SIMPLE VALIDATION
                 if(validate())
                 {
-                    //THEN SAVE
                     String id_introdus= helper.save(s);
 
                     if(id_introdus!=null)
                     {
                         id = id_introdus;
                         s.setUserActivityId(id);
-                        //IF SAVED CLEAR EDITXT
                         titleList.setText("");
                         dateList.setText("");
                         descList.setText("");

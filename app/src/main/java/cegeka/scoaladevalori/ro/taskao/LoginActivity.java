@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkEmailVerification() {
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
         Boolean emailflag = firebaseUser.isEmailVerified();
 
         //startActivity(new Intent(LoginActivity.this, MainActivity.class));

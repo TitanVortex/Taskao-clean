@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "The passwords must be the same!", Toast.LENGTH_SHORT).show();
             } else {
                 if (passwordCon.toString().length() < 6) {
-                    Toast.makeText(this, "The passwords must have at least 6 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "The passwords must have at least 6 characters!", Toast.LENGTH_LONG).show();
                 } else {
                     result = true;
                 }
@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         sendUserData();
-                        Toast.makeText(RegisterActivity.this, "Successfully Registered, Verification mail sent!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Successfully Registered! Verification mail sent!", Toast.LENGTH_LONG).show();
                         firebaseAuth.signOut();
                         finish();
                     }else{

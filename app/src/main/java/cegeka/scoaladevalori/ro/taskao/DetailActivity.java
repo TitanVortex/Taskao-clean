@@ -36,18 +36,13 @@ public class DetailActivity extends AppCompatActivity {
         descShow = (TextView) findViewById(R.id.etDescriptionDetail);
         btnDelete = (Button) findViewById(R.id.btnDelete);
 
-        //GET INTENT
         Intent i=this.getIntent();
 
-
-        //RECEIVE DATA
         String name=i.getExtras().getString("NAME_KEY");
         String date=i.getExtras().getString("DATE_KEY");
         String desc=i.getExtras().getString("DESC_KEY");
         final String idDelete=i.getExtras().getString("DELETE_KEY");
 
-
-        //BIND DATA
         titleShow.setText(name);
         dateShow.setText(date);
         descShow.setText(desc);
@@ -60,9 +55,6 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

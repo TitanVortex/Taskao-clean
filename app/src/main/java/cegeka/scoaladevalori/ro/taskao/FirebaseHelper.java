@@ -45,7 +45,6 @@ public class FirebaseHelper {
 
     }
 
-    //WRITE IF NOT NULL
     public String save(UserActivities activity)
     {
         if(activity==null)
