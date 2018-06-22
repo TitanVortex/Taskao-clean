@@ -93,14 +93,18 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(name.isEmpty() || password.isEmpty() || passwordCon.isEmpty() || email.isEmpty()){
             Toast.makeText(this, "Please enter all the details!", Toast.LENGTH_SHORT).show();
-        }
-        if(! passwordCon.toString().equals(password.toString()))
+        }else {
+            if (!passwordCon.toString().equals(password.toString())) {
                 Toast.makeText(this, "The passwords must be the same!", Toast.LENGTH_SHORT).show();
-        if (passwordCon.toString().length()!=6)
-                Toast.makeText(this, "The passwords must have at least 6 characters!", Toast.LENGTH_SHORT).show();
-            else
-            result = true;
+            } else {
+                if (passwordCon.toString().length() < 6) {
+                    Toast.makeText(this, "The passwords must have at least 6 characters!", Toast.LENGTH_SHORT).show();
+                } else {
+                    result = true;
+                }
 
+            }
+        }
         return result;
     }
 
