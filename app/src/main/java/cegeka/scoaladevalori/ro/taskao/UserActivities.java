@@ -2,10 +2,10 @@ package cegeka.scoaladevalori.ro.taskao;
 
 public class UserActivities {
 
-    String userActivityTitile;
-    String userActivityDescription;
-    String userActivityDate;
-    String userActivityId;
+     String userActivityTitile;
+     String userActivityDescription;
+     String userActivityDate;
+     String userActivityId;
 
     public UserActivities(){
     }
