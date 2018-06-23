@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Go to the Activities Viewer to add activity", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Go to the Activities Viewer to add new activity", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

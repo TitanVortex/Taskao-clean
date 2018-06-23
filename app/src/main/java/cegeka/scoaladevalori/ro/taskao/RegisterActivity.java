@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 firebaseAuth.signOut();
                                 Toast.makeText(RegisterActivity.this, "Successfully Registered, Upload complete!", Toast.LENGTH_SHORT).show();
                                 finish();
-                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
@@ -117,7 +117,6 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        sendUserData();
                         Toast.makeText(RegisterActivity.this, "Successfully Registered! Verification mail sent!", Toast.LENGTH_LONG).show();
                         firebaseAuth.signOut();
                         finish();
